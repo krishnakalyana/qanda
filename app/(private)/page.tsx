@@ -18,7 +18,7 @@ export default function Home() {
     }
   ]
   return (
-    <main className=' h-full grid grid-cols-1 items-center lg:grid-cols-2'>
+    <main className=' h-full pb-8 grid grid-cols-1 items-center lg:grid-cols-2 md:mb-0'>
       <div>
         <CardContainer className='inter-var flex flex-col'>
           <TypewriterEffect words={words} className='' />

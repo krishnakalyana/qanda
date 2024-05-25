@@ -24,7 +24,7 @@ export default function Navbar() {
         </Link>
         <Link
           href={{
-            pathname: `${routeConstant.HOME}`
+            pathname: `${routeConstant.TRENDING}`
           }}
         >
           <Button
