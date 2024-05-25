@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { routeConstant } from '@/lib/constants/routeConstant'
 export default function RegisterForm() {
   return (
     <CardContainer className='inter-var'>
@@ -18,7 +19,7 @@ export default function RegisterForm() {
         </CardItem>
         <form>
           {/* Inputs */}
-          <div className='grid grid-cols-2 gap-2 mt-2'>
+          <div className='grid grid-cols-1 gap-2 mt-2 sm:grid-cols-2'>
             <CardItem
               as='p'
               translateZ='10'
@@ -73,9 +74,15 @@ export default function RegisterForm() {
             >
               <p>Already have an account?</p>
             </CardItem>
-            <CardItem translateZ='20' className='w-full'>
-              <Button className='w-full'>Login</Button>
-            </CardItem>
+            <Link
+              href={{
+                pathname: `${routeConstant.LOGIN}`
+              }}
+            >
+              <CardItem translateZ='20' className='w-full'>
+                <Button className='w-full'>Login</Button>
+              </CardItem>
+            </Link>
           </div>
         </form>
       </CardBody>
