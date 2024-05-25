@@ -1,4 +1,6 @@
 export const routeConstant = {
     HOME:"/",
-    REGISTER:"/register"
+    REGISTER:"/register",
+    PROFILE:"/profile",
+    LOGIN:"/login"
 }

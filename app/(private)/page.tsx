@@ -1,28 +1,31 @@
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
-import Intro from "./_homeComponents/Intro";
-import TrendingQuestions from "./_homeComponents/TrendingQuestions";
+import { TypewriterEffect } from '@/components/ui/typewriter-effect'
+import Intro from './_homeComponents/Intro'
+import TrendingQuestions from './_homeComponents/TrendingQuestions'
+import { CardContainer } from '@/components/ui/3d-card'
 
 export default function Home() {
   const words = [
     {
-      text: "Got",
+      text: 'Got'
     },
     {
-      text: "a ",
+      text: 'a '
     },
-   {text:"    "},
+    { text: '    ' },
     {
-      text: "  Question ?",
-      className: "text-primary tracking-[1rem]",
-    },
-  ];
+      text: '  Question ?',
+      className: 'text-primary tracking-[1rem]'
+    }
+  ]
   return (
- <main className=" h-full grid grid-cols-2 items-center"> 
- <div>
-  <TypewriterEffect words={words} className=""/>
-  <Intro/>
- </div>
-  <TrendingQuestions/>
- </main>
-  );
+    <main className=' h-full grid grid-cols-1 items-center lg:grid-cols-2'>
+      <div>
+        <CardContainer className='inter-var flex flex-col'>
+          <TypewriterEffect words={words} className='' />
+          <Intro />
+        </CardContainer>
+      </div>
+      <TrendingQuestions />
+    </main>
+  )
 }
