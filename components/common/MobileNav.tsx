@@ -1,3 +1,4 @@
+'use client'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -17,7 +18,10 @@ import { RxHamburgerMenu } from 'react-icons/rx'
 import ModeToggle from './ThemeToggle'
 import Link from 'next/link'
 import { routeConstant } from '@/lib/constants/routeConstant'
+import { buttons } from '@/lib/constants/navbutton'
+import { usePathname } from 'next/navigation'
 export default function MobileNav() {
+  const pathname = usePathname()
   return (
     <div className='flex bg-accent justify-between p-2'>
       <ModeToggle />
@@ -30,42 +34,24 @@ export default function MobileNav() {
         <DropdownMenuContent className='w-56'>
           <DropdownMenuLabel>QANDA</DropdownMenuLabel>
           <DropdownMenuSeparator />
+
           <DropdownMenuGroup>
-            <Link
-              href={{
-                pathname: `${routeConstant.HOME}`
-              }}
-            >
-              <DropdownMenuItem>Home</DropdownMenuItem>
-            </Link>
-            <Link
-              href={{
-                pathname: `${routeConstant.FEED}`
-              }}
-            >
-              <DropdownMenuItem>Feed</DropdownMenuItem>
-            </Link>
-            <Link
-              href={{
-                pathname: `${routeConstant.PROFILE}`
-              }}
-            >
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-            </Link>
-            <Link
-              href={{
-                pathname: `${routeConstant.REGISTER}`
-              }}
-            >
-              <DropdownMenuItem>Register</DropdownMenuItem>
-            </Link>
-            <Link
-              href={{
-                pathname: `${routeConstant.LOGIN}`
-              }}
-            >
-              <DropdownMenuItem>Login</DropdownMenuItem>
-            </Link>
+            {buttons.map((button, index) => {
+              return (
+                <Link
+                  key={button.title}
+                  href={{
+                    pathname: button.link
+                  }}
+                >
+                  <DropdownMenuItem
+                    className={pathname == button.link ? 'text-primary' : ''}
+                  >
+                    {button.title}
+                  </DropdownMenuItem>
+                </Link>
+              )
+            })}
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Log out</DropdownMenuItem>

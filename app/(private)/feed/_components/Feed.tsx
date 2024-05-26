@@ -2,9 +2,9 @@ import { cn } from '@/lib/utils'
 import { HotRightNow } from './HotRightNow'
 
 export default function Feed() {
-  const heading = `tracking-[0.5em] mb-4`
+  const heading = `tracking-[0.5em] mb-4 `
   return (
-    <div className=''>
+    <div className='flex flex-col gap-8'>
       <div className='w-full overflow-auto'>
         <h1 className={cn(heading)}>Hot Right Now</h1>
         <HotRightNow />
