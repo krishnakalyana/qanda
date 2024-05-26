@@ -3,5 +3,5 @@ export const routeConstant = {
     REGISTER:"/register",
     PROFILE:"/profile",
     LOGIN:"/login",
-    TRENDING:"/trending"
+    FEED:"/feed"
 }
