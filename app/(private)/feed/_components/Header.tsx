@@ -5,7 +5,7 @@ import { IoSearchOutline } from 'react-icons/io5'
 
 export default function Header() {
   return (
-    <div className='py-2 flex gap-2 items-center'>
+    <div className='flex gap-2 items-center'>
       <div className='flex-1 relative'>
         <Input type='search' placeholder='Got a question?' />
         <Button

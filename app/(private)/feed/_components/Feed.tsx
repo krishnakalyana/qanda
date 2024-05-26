@@ -1,16 +1,22 @@
+import { cn } from '@/lib/utils'
 import { HotRightNow } from './HotRightNow'
 
 export default function Feed() {
-  // const heading = `tracking-[0.5em] `
-  const heading = ` `
+  const heading = `tracking-[0.5em] mb-4`
   return (
-    <div className='h-full w-full '>
+    <div className=''>
       <div className='w-full overflow-auto'>
-        Hot right now
+        <h1 className={cn(heading)}>Hot Right Now</h1>
         <HotRightNow />
       </div>
-      <div> Latest solved </div>
-      <div> Newest questions</div>
+      <div className='w-full overflow-auto mt-4'>
+        <h1 className={cn(heading)}>Latest solved</h1>
+        <HotRightNow />
+      </div>
+      <div className='w-full overflow-auto mt-4'>
+        <h1 className={cn(heading)}>Newest questions</h1>
+        <HotRightNow />
+      </div>
     </div>
   )
 }
