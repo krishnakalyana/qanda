@@ -24,7 +24,7 @@ export default function Navbar() {
         </Link>
         <Link
           href={{
-            pathname: `${routeConstant.HOME}`
+            pathname: `${routeConstant.FEED}`
           }}
         >
           <Button
@@ -32,7 +32,7 @@ export default function Navbar() {
             className='tracking-widest uppercase'
             variant={'ghost'}
           >
-            Trending
+            Feed
           </Button>
         </Link>
         <Link

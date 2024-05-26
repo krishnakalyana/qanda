@@ -40,10 +40,10 @@ export default function MobileNav() {
             </Link>
             <Link
               href={{
-                pathname: `${routeConstant.HOME}`
+                pathname: `${routeConstant.FEED}`
               }}
             >
-              <DropdownMenuItem>Trending</DropdownMenuItem>
+              <DropdownMenuItem>Feed</DropdownMenuItem>
             </Link>
             <Link
               href={{

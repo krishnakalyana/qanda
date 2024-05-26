@@ -2,5 +2,6 @@ export const routeConstant = {
     HOME:"/",
     REGISTER:"/register",
     PROFILE:"/profile",
-    LOGIN:"/login"
+    LOGIN:"/login",
+    FEED:"/feed"
 }

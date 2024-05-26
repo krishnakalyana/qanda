@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 
 export default function TrendingQuestions() {
   return (
-    <div className='flex mt-4  items-center justify-center w-full'>
+    <div className='flex items-center justify-center w-full'>
       <CardStack items={CARDS} />
     </div>
   )
