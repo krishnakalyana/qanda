@@ -60,3 +60,19 @@
       @apply bg-background text-foreground;
     }
   }
+  ::-webkit-scrollbar {
+    /* Customize the scrollbar width */
+    width: 0.3rem;
+    height: 0.3rem;
+}
+
+::-webkit-scrollbar-track {
+    /* Customize the scrollbar track */
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    /* Customize the scrollbar thumb */
+    padding: 0.1rem;
+    background-color: #000;
+}

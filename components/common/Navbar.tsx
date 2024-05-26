@@ -3,77 +3,37 @@ import UserIcon from '@/assets/icons/User'
 import { Button } from '../ui/button'
 import ModeToggle from './ThemeToggle'
 import Link from 'next/link'
-import { routeConstant } from '@/lib/constants/routeConstant'
+import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
+import { buttons } from '@/lib/constants/navbutton'
 
 export default function Navbar() {
+  const pathname = usePathname()
+  const navClass = 'tracking-widest uppercase'
   return (
     <nav className=' h-full p-2 flex flex-col bg-accent justify-between '>
       <div className='flex flex-col gap-2'>
-        <Link
-          href={{
-            pathname: `${routeConstant.HOME}`
-          }}
-        >
-          <Button
-            size={'sm'}
-            className='tracking-widest uppercase text-primary'
-            variant={'ghost'}
-          >
-            Home
-          </Button>
-        </Link>
-        <Link
-          href={{
-            pathname: `${routeConstant.FEED}`
-          }}
-        >
-          <Button
-            size={'sm'}
-            className='tracking-widest uppercase'
-            variant={'ghost'}
-          >
-            Feed
-          </Button>
-        </Link>
-        <Link
-          href={{
-            pathname: `${routeConstant.PROFILE}`
-          }}
-        >
-          <Button
-            size={'sm'}
-            className='tracking-widest uppercase'
-            variant={'ghost'}
-          >
-            Profile
-          </Button>
-        </Link>
-        <Link
-          href={{
-            pathname: `${routeConstant.REGISTER}`
-          }}
-        >
-          <Button
-            size={'sm'}
-            className='tracking-widest uppercase'
-            variant={'ghost'}
-          >
-            Register
-          </Button>
-        </Link>
-        <Link
-          href={{
-            pathname: `${routeConstant.LOGIN}`
-          }}
-        >
-          <Button
-            size={'sm'}
-            className='tracking-widest uppercase'
-            variant={'ghost'}
-          >
-            Login
-          </Button>
-        </Link>
+        {buttons.map((button, index) => {
+          return (
+            <Link
+              key={button.title}
+              href={{
+                pathname: button.link
+              }}
+            >
+              <Button
+                size={'sm'}
+                className={cn(
+                  navClass,
+                  button.link == pathname ? 'text-primary' : ''
+                )}
+                variant={'ghost'}
+              >
+                {button.title}
+              </Button>
+            </Link>
+          )
+        })}
       </div>
       <div className=' flex flex-col   gap-2'>
         <Button size={'sm'} variant={'link'}>
