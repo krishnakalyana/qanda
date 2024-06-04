@@ -1,10 +1,45 @@
+'use client'
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { routeConstant } from '@/lib/constants/routeConstant'
+import axios from 'axios'
 import Link from 'next/link'
 
 export default function Login() {
+  const handleLogin = (e: React.FormEvent<EventTarget>): void => {
+    e.preventDefault()
+    axios
+      .post(
+        'http://localhost:8080/auth/login',
+        {
+          email: 'john@gmail.com',
+          password: 'User@1234'
+        },
+        {
+          withCredentials: true // This ensures cookies are included in the request
+        }
+      )
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  const getusers = (e: React.FormEvent<EventTarget>): void => {
+    e.preventDefault()
+    axios
+      .get(`http://localhost:8080/users`, {
+        withCredentials: true // Include cookies in this request
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
   return (
     <div className='grid content-center gap-4 h-full'>
       <CardContainer className='inter-var'>
@@ -29,7 +64,9 @@ export default function Login() {
 
             <div className='mt-4 w-full'>
               <CardItem translateZ='20' className='w-full'>
-                <Button className='w-full'>Login</Button>
+                <Button className='w-full' onClick={handleLogin}>
+                  Login
+                </Button>
               </CardItem>
 
               <CardItem
@@ -38,15 +75,17 @@ export default function Login() {
               >
                 <p>Do not have an account?</p>
               </CardItem>
-              <Link
+              {/* <Link
                 href={{
                   pathname: `${routeConstant.REGISTER}`
-                }}
-              >
-                <CardItem translateZ='20' className='w-full'>
-                  <Button className='w-full'>Signup</Button>
-                </CardItem>
-              </Link>
+                }} */}
+              {/* > */}
+              <CardItem translateZ='20' className='w-full'>
+                <Button className='w-full' onClick={getusers}>
+                  Signup
+                </Button>
+              </CardItem>
+              {/* </Link> */}
             </div>
           </form>
         </CardBody>
