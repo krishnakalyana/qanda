@@ -5,13 +5,21 @@ import { Input } from '@/components/ui/input'
 import { routeConstant } from '@/lib/constants/routeConstant'
 import axios from 'axios'
 import Link from 'next/link'
-
+import { FormEvent } from 'react'
+import { useRouter } from 'next/navigation'
 export default function Login() {
-  const handleLogin = (e: React.FormEvent<EventTarget>): void => {
-    e.preventDefault()
+  const router = useRouter()
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    const data = Object.fromEntries(formData.entries())
+    console.log(process.env.NEXT_PUBLIC_API_URL)
+
     axios
       .post(
-        'http://localhost:8080/auth/login',
+        `${process.env.NEXT_PUBLIC_API_URL}auth/login`,
+        // data,
         {
           email: 'john@gmail.com',
           password: 'User@1234'
@@ -22,24 +30,27 @@ export default function Login() {
       )
       .then(res => {
         console.log(res)
+        router.push(routeConstant.HOME, { scroll: false })
       })
       .catch(err => {
         console.log(err)
       })
   }
-  const getusers = (e: React.FormEvent<EventTarget>): void => {
-    e.preventDefault()
-    axios
-      .get(`http://localhost:8080/users`, {
-        withCredentials: true // Include cookies in this request
-      })
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+
+  // const getusers = (e: React.FormEvent<EventTarget>): void => {
+  //   e.preventDefault()
+  //   axios
+  //     .get(`http://localhost:8080/users`, {
+  //       withCredentials: true // Include cookies in this request
+  //     })
+  //     .then(res => {
+  //       console.log(res)
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+  // }
+
   return (
     <div className='grid content-center gap-4 h-full'>
       <CardContainer className='inter-var'>
@@ -50,21 +61,21 @@ export default function Login() {
           >
             Welcome back
           </CardItem>
-          <form>
+          <form onSubmit={handleSubmit}>
             {/* Inputs */}
             <div className='flex flex-col gap-2 mt-2 '>
               <CardItem as='p' translateZ='10' className=' w-full'>
-                <Input placeholder='Username or Email' />
+                <Input placeholder='Username or Email' name='email' />
               </CardItem>
 
               <CardItem as='p' translateZ='10' className=' w-full'>
-                <Input placeholder='Password' type='password' />
+                <Input placeholder='Password' type='password' name='password' />
               </CardItem>
             </div>
 
             <div className='mt-4 w-full'>
               <CardItem translateZ='20' className='w-full'>
-                <Button className='w-full' onClick={handleLogin}>
+                <Button className='w-full' type='submit'>
                   Login
                 </Button>
               </CardItem>
@@ -75,17 +86,15 @@ export default function Login() {
               >
                 <p>Do not have an account?</p>
               </CardItem>
-              {/* <Link
+              <Link
                 href={{
                   pathname: `${routeConstant.REGISTER}`
-                }} */}
-              {/* > */}
-              <CardItem translateZ='20' className='w-full'>
-                <Button className='w-full' onClick={getusers}>
-                  Signup
-                </Button>
-              </CardItem>
-              {/* </Link> */}
+                }}
+              >
+                <CardItem translateZ='20' className='w-full'>
+                  <Button className='w-full'>Signup</Button>
+                </CardItem>
+              </Link>
             </div>
           </form>
         </CardBody>
