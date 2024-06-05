@@ -14,7 +14,6 @@ export default function Login() {
 
     const formData = new FormData(event.currentTarget)
     const data = Object.fromEntries(formData.entries())
-    console.log(process.env.NEXT_PUBLIC_API_URL)
 
     axios
       .post(
