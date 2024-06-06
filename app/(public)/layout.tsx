@@ -4,13 +4,12 @@ import instance from '@/middlewares/interceptor'
 import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { routeConstant } from '@/lib/constants/routeConstant'
-import { useAppDispatch, useAppSelector } from '@/lib/hooks'
+import { useAppDispatch } from '@/lib/hooks'
 import { setIsLoggedIn } from '@/lib/features/auth/authSlice'
-export default function PrivateLayout({
+export default function PublicRoute({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   const router = useRouter()
-
   const dispatch = useAppDispatch()
 
   useEffect(() => {
