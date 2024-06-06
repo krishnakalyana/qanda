@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import MainLayout from '@/components/common/layouts/MainLayout'
+import StoreProvider from '@/middlewares/StoreProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +24,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <MainLayout>{children}</MainLayout>
+          <StoreProvider>
+            <MainLayout>{children}</MainLayout>
+          </StoreProvider>
         </ThemeProvider>
       </body>
     </html>
