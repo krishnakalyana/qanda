@@ -6,14 +6,18 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { buttons } from '@/lib/constants/navbutton'
+import { useAppSelector } from '@/lib/hooks'
 
 export default function Navbar() {
   const pathname = usePathname()
+  const { isLoggedIn } = useAppSelector(state => state.auth)
+  const auth: 'private' | 'public' = isLoggedIn ? 'private' : 'public'
   const navClass = 'tracking-widest uppercase'
+
   return (
     <nav className=' h-full p-2 flex flex-col bg-accent justify-between '>
       <div className='flex flex-col gap-2'>
-        {buttons.map((button, index) => {
+        {buttons[auth].map((button, index) => {
           return (
             <Link
               key={button.title}

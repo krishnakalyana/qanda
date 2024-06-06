@@ -20,8 +20,11 @@ import Link from 'next/link'
 import { routeConstant } from '@/lib/constants/routeConstant'
 import { buttons } from '@/lib/constants/navbutton'
 import { usePathname } from 'next/navigation'
+import { useAppSelector } from '@/lib/hooks'
 export default function MobileNav() {
   const pathname = usePathname()
+  const { isLoggedIn } = useAppSelector(state => state.auth)
+  const auth: 'private' | 'public' = isLoggedIn ? 'private' : 'public'
   return (
     <div className='flex bg-accent justify-between p-2'>
       <ModeToggle />
@@ -36,7 +39,7 @@ export default function MobileNav() {
           <DropdownMenuSeparator />
 
           <DropdownMenuGroup>
-            {buttons.map((button, index) => {
+            {buttons[auth].map((button, index) => {
               return (
                 <Link
                   key={button.title}

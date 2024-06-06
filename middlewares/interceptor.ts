@@ -13,8 +13,8 @@ axios.interceptors.request.use(function (config) {
 return res
   },(error)=>{
     if(error?.response?.status === 401){
-        // const redirectUrl = "/login"; 
-        // window.location.href = redirectUrl;
+        const redirectUrl = "/login"; 
+        window.location.href = redirectUrl;
     }
   });
   export default instance

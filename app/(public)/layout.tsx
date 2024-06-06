@@ -18,10 +18,10 @@ export default function PrivateLayout({
       .get(`${process.env.NEXT_PUBLIC_API_URL}${API_PATH.isLoggedIn}`)
       .then(res => {
         if (res) dispatch(setIsLoggedIn(true))
+        router.push(routeConstant.HOME)
       })
       .catch(err => {
         dispatch(setIsLoggedIn(false))
-        router.push(routeConstant.LOGIN)
       })
   }, [])
   return <>{children}</>
