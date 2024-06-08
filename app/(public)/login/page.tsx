@@ -5,15 +5,20 @@ import { Input } from '@/components/ui/input'
 import { routeConstant } from '@/lib/constants/routeConstant'
 import axios from 'axios'
 import Link from 'next/link'
-import { FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { LoginSchema, LoginSchemaType } from '@/lib/schemas/loginschema'
+import { zodResolver } from '@hookform/resolvers/zod'
 export default function Login() {
   const router = useRouter()
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<LoginSchemaType>({ resolver: zodResolver(LoginSchema) })
 
-    const formData = new FormData(event.currentTarget)
-    const data = Object.fromEntries(formData.entries())
+  const onSubmit: SubmitHandler<LoginSchemaType> = data => {
+    console.log('data', data)
 
     axios
       .post(
@@ -60,15 +65,34 @@ export default function Login() {
           >
             Welcome back
           </CardItem>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {/* Inputs */}
             <div className='flex flex-col gap-2 mt-2 '>
               <CardItem as='p' translateZ='10' className=' w-full'>
-                <Input placeholder='Username or Email' name='email' />
+                <Input
+                  placeholder='Username or Email'
+                  {...register('email')}
+                  className={errors.email && 'border-red-500'}
+                />
+                {errors.email && (
+                  <span className='pl-2 font-normal text-red-500 text-sm'>
+                    {errors.email.message}
+                  </span>
+                )}
               </CardItem>
 
               <CardItem as='p' translateZ='10' className=' w-full'>
-                <Input placeholder='Password' type='password' name='password' />
+                <Input
+                  placeholder='Password'
+                  type='password'
+                  {...register('password')}
+                  className={errors.password && 'border-red-500'}
+                />
+                {errors.password && (
+                  <span className='pl-2 font-normal text-red-500 text-sm'>
+                    {errors.password.message}
+                  </span>
+                )}
               </CardItem>
             </div>
 
