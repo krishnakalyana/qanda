@@ -1,9 +1,17 @@
+'use client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useAppSelector } from '@/lib/hooks'
 import { IoCreateOutline } from 'react-icons/io5'
 import { IoSearchOutline } from 'react-icons/io5'
+import { AlertDialogDemo } from './CreateFuss'
+import { useRouter } from 'next/navigation'
+import { routeConstant } from '@/lib/constants/routeConstant'
 
 export default function Header() {
+  const router = useRouter()
+  const { isLoggedIn } = useAppSelector(state => state.auth)
+
   return (
     <div className='flex gap-2 items-center'>
       <div className='flex-1 relative'>
@@ -16,9 +24,19 @@ export default function Header() {
           <IoSearchOutline />
         </Button>
       </div>
-      <Button className='' size={'sm'}>
-        Create a Fuss <IoCreateOutline className='ml-2 text-xl' />
-      </Button>
+      {isLoggedIn ? (
+        <AlertDialogDemo />
+      ) : (
+        <Button
+          className=''
+          size={'sm'}
+          onClick={() => {
+            router.push(routeConstant.LOGIN)
+          }}
+        >
+          Login to Create a Fuss <IoCreateOutline className='ml-2 text-xl' />
+        </Button>
+      )}
     </div>
   )
 }
