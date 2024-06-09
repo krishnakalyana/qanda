@@ -4,9 +4,10 @@ import { Input } from '@/components/ui/input'
 import { useAppSelector } from '@/lib/hooks'
 import { IoCreateOutline } from 'react-icons/io5'
 import { IoSearchOutline } from 'react-icons/io5'
-import { AlertDialogDemo } from './CreateFuss'
+// import { AlertDialogDemo } from './CreateFuss'
 import { useRouter } from 'next/navigation'
 import { routeConstant } from '@/lib/constants/routeConstant'
+import Link from 'next/link'
 
 export default function Header() {
   const router = useRouter()
@@ -25,7 +26,11 @@ export default function Header() {
         </Button>
       </div>
       {isLoggedIn ? (
-        <AlertDialogDemo />
+        <Link href={'/feed/createfuss'}>
+          <Button className='' size={'sm'}>
+            Create a Fuss <IoCreateOutline className='ml-2 text-xl' />
+          </Button>
+        </Link>
       ) : (
         <Button
           className=''
