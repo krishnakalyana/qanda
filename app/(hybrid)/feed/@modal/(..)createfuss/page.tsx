@@ -1,7 +1,9 @@
+import CreateFuss from '@/app/(private)/createfuss/_createFussComponents/CreateFuss'
 import InterceptorModal from '@/components/common/InterceptorModal'
-import CreateFuss from '../../../_components/_createFussComponents/CreateFuss'
 
 const Page = () => {
+  console.log('called iinnn')
+
   return (
     <InterceptorModal>
       <CreateFuss />

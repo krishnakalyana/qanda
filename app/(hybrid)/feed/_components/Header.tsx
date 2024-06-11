@@ -26,7 +26,7 @@ export default function Header() {
         </Button>
       </div>
       {isLoggedIn ? (
-        <Link href={'/feed/createfuss'}>
+        <Link href={'/createfuss'}>
           <Button className='' size={'sm'}>
             Create a Fuss <IoCreateOutline className='ml-2 text-xl' />
           </Button>

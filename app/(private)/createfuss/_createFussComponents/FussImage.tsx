@@ -5,8 +5,8 @@ export interface imagetype {
   title: string
 }
 export default function FussImage() {
-  // const images: imagetype[] = [{ src: '', title: '' }]
-  const images: imagetype[] = []
+  const images: imagetype[] = [{ src: '', title: '' }]
+  // const images: imagetype[] = []
   return (
     <div className='w-full'>
       {images.length <= 0 && (
@@ -16,6 +16,7 @@ export default function FussImage() {
           </Button>
         </div>
       )}
+      <div>some images</div>
     </div>
   )
 }
